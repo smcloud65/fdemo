@@ -39,16 +39,16 @@ pipeline {
         }
              stage('ScanImage') 
                steps {
-               script 
-             {prismaCloudScanImage ca: '', cert: '', dockerAddress:
+               script {
+		sh "prismaCloudScanImage ca: '', cert: '', dockerAddress:
          'unix:///var/run/docker.sock', image: '${docker_repo_uri}:${commit_id}', 
          key: '', logLevel: 'info', podmanPath: '', project: '', resultsFile: 'prisma-cloud-scan-results.json'
         }
         }
             stage('Publish') 
             steps { 
-            script 
-            {prismaCloudPublish resultsFilePattern: 'prisma-cloud-scan-results.json'} 
+            script { 
+	     sh "prismaCloudPublish resultsFilePattern: 'prisma-cloud-scan-results.json'} 
         }
     }
 }
