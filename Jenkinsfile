@@ -31,7 +31,6 @@ pipeline {
         sh "docker push ${docker_repo_uri}:${commit_id}"
         // Clean up
         sh "docker rmi -f ${docker_repo_uri}:${commit_id}"
-    }
                 // This is a step of type "echo". It doesn't do much, only prints some text.
                 //echo 'This is a sample stage'
                 // For a list of all the supported steps, take a look at
