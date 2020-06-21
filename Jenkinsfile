@@ -1,4 +1,3 @@
-// Declarative pipelines must be enclosed with a "pipeline" directive.
 pipeline {
     // This line is required for declarative pipelines. Just keep it here.
     agent any
@@ -36,19 +35,6 @@ pipeline {
                 // For a list of all the supported steps, take a look at
                 // https://jenkins.io/doc/pipeline/steps/ .
             }
-        }
-             stage('ScanImage') 
-               steps {
-               script {
-		sh "prismaCloudScanImage ca: '', cert: '', dockerAddress:
-         'unix:///var/run/docker.sock', image: '${docker_repo_uri}:${commit_id}', 
-         key: '', logLevel: 'info', podmanPath: '', project: '', resultsFile: 'prisma-cloud-scan-results.json'
-        }
-        }
-            stage('Publish') 
-            steps { 
-            script { 
-	     sh "prismaCloudPublish resultsFilePattern: 'prisma-cloud-scan-results.json'} 
         }
     }
 }
